@@ -214,6 +214,7 @@ button {
 }
 
 .task-form input,
+.task-form textarea,
 .spec-panel textarea {
   width: 100%;
   color: #f7fafc;
@@ -228,7 +229,23 @@ button {
   padding: 0 11px;
 }
 
+.task-form textarea {
+  grid-column: 1 / -1;
+  min-height: 58px;
+  max-height: 88px;
+  padding: 9px 11px;
+  resize: none;
+  line-height: 1.35;
+  font-size: 13px;
+}
+
+.task-form button {
+  grid-column: 2;
+  grid-row: 1;
+}
+
 .task-form input:focus,
+.task-form textarea:focus,
 .spec-panel textarea:focus {
   border-color: #8bd3dd;
   box-shadow: 0 0 0 2px rgba(139, 211, 221, 0.2);

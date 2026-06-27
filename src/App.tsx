@@ -82,7 +82,7 @@ export function App() {
     if (!title) return;
 
     try {
-      const task = await createTask(title, description);
+      const task = await createTask(title, description || undefined);
       setTasks((current) => [task, ...current]);
       setApiState("online");
       setDraftTask("");

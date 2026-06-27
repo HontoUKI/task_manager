@@ -124,3 +124,7 @@ and has Alembic migrations plus pytest coverage. See
 - Python dependencies are managed with `uv`.
 - Local generated files such as `.env`, `dist/`, `node_modules/`, `.venv/`,
   `target/`, and SQLite databases are ignored.
+
+## Contributors
+
+See [CONTRIBUTORS.md](CONTRIBUTORS.md).
