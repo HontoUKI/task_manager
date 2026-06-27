@@ -1,0 +1,24 @@
+[project]
+name = "task-management-api"
+version = "0.1.0"
+description = "Small FastAPI task management API."
+readme = "README.MD"
+requires-python = ">=3.11"
+dependencies = [
+  "alembic==1.16.2",
+  "fastapi==0.115.14",
+  "httpx==0.28.1",
+  "pytest==8.4.1",
+  "SQLAlchemy==2.0.41",
+  "uvicorn[standard]==0.35.0",
+]
+
+[tool.uv]
+package = false
+
+[tool.pyright]
+venvPath = "."
+venv = ".venv"
+
+[tool.pytest.ini_options]
+pythonpath = ["."]

@@ -1,0 +1,295 @@
+:root {
+  color: #e8edf2;
+  background: transparent;
+  font-family:
+    Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  min-width: 320px;
+  min-height: 100vh;
+  margin: 0;
+  background: transparent;
+}
+
+button,
+input,
+textarea {
+  font: inherit;
+}
+
+button {
+  color: inherit;
+}
+
+.overlay-shell {
+  width: min(100vw, 460px);
+  height: 100vh;
+  max-height: 620px;
+  display: grid;
+  grid-template-rows: auto minmax(160px, 1fr) minmax(190px, 0.9fr);
+  gap: 10px;
+  padding: 10px;
+  background:
+    linear-gradient(180deg, rgba(25, 30, 34, 0.94), rgba(16, 19, 22, 0.94)),
+    #15191d;
+  border: 1px solid rgba(255, 255, 255, 0.13);
+  border-radius: 8px;
+  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.35);
+  overflow: hidden;
+  opacity: 1;
+  transition: opacity 140ms ease, border-color 140ms ease, box-shadow 140ms ease;
+}
+
+.overlay-shell.click-through {
+  opacity: 0.46;
+  border-color: rgba(139, 211, 221, 0.22);
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.22);
+}
+
+.titlebar {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 10px;
+  min-height: 38px;
+  user-select: none;
+}
+
+.drag-handle {
+  width: 32px;
+  height: 32px;
+  display: grid;
+  place-items: center;
+  color: #9ca7b3;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.05);
+  cursor: move;
+  padding: 0;
+}
+
+.drag-handle:hover {
+  color: #f6f8fb;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.identity {
+  min-width: 0;
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+}
+
+.app-name {
+  font-size: 13px;
+  font-weight: 700;
+  color: #f6f8fb;
+}
+
+.status,
+.section-heading small {
+  font-size: 11px;
+  color: #91a0ac;
+}
+
+.window-actions {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.click-mode {
+  height: 32px;
+  display: grid;
+  grid-template-columns: 32px auto;
+  align-items: center;
+  gap: 6px;
+  padding-right: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.045);
+}
+
+.click-mode.enabled {
+  border-color: rgba(139, 211, 221, 0.7);
+  background: rgba(139, 211, 221, 0.13);
+}
+
+.click-mode-copy {
+  display: grid;
+  gap: 1px;
+  min-width: 66px;
+  line-height: 1;
+}
+
+.click-mode-copy span {
+  color: #a9b4bd;
+  font-size: 10px;
+  font-weight: 800;
+}
+
+.click-mode.enabled .click-mode-copy span {
+  color: #8bd3dd;
+}
+
+.click-mode-copy kbd {
+  color: #dfe7ed;
+  font-family: inherit;
+  font-size: 10px;
+  font-weight: 700;
+}
+
+.icon-button,
+.task-form button,
+.check-button,
+.delete-button {
+  width: 32px;
+  height: 32px;
+  display: grid;
+  place-items: center;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.06);
+  cursor: pointer;
+}
+
+.icon-button:hover,
+.task-form button:hover,
+.check-button:hover,
+.delete-button:hover {
+  background: rgba(255, 255, 255, 0.11);
+}
+
+.icon-button.active {
+  color: #101417;
+  background: #8bd3dd;
+  border-color: #8bd3dd;
+}
+
+.task-panel,
+.spec-panel {
+  min-height: 0;
+  display: grid;
+  gap: 10px;
+}
+
+.task-panel {
+  grid-template-rows: auto 1fr;
+}
+
+.task-form {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 8px;
+}
+
+.task-form input,
+.spec-panel textarea {
+  width: 100%;
+  color: #f7fafc;
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 6px;
+  outline: none;
+}
+
+.task-form input {
+  height: 34px;
+  padding: 0 11px;
+}
+
+.task-form input:focus,
+.spec-panel textarea:focus {
+  border-color: #8bd3dd;
+  box-shadow: 0 0 0 2px rgba(139, 211, 221, 0.2);
+}
+
+.tasks {
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  overflow: auto;
+  padding-right: 2px;
+}
+
+.task {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 8px;
+  min-height: 36px;
+  padding: 5px;
+  color: #eef3f7;
+  background: rgba(255, 255, 255, 0.055);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 6px;
+}
+
+.task span {
+  min-width: 0;
+  overflow-wrap: anywhere;
+  font-size: 13px;
+  line-height: 1.35;
+}
+
+.task.done span {
+  color: #8e9aa5;
+  text-decoration: line-through;
+}
+
+.check-button,
+.delete-button {
+  width: 26px;
+  height: 26px;
+  color: #aab4be;
+  background: transparent;
+}
+
+.delete-button:hover {
+  color: #ffb4a8;
+}
+
+.empty-state {
+  min-height: 100%;
+  display: grid;
+  place-items: center;
+  gap: 8px;
+  align-content: center;
+  color: #8f9ba6;
+  font-size: 13px;
+  text-align: center;
+  border: 1px dashed rgba(255, 255, 255, 0.12);
+  border-radius: 6px;
+}
+
+.section-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  min-height: 20px;
+  font-size: 12px;
+  font-weight: 700;
+  color: #dbe5ec;
+}
+
+.spec-panel textarea {
+  min-height: 0;
+  resize: none;
+  padding: 10px;
+  line-height: 1.45;
+  font-size: 13px;
+}
+
+::placeholder {
+  color: #73818e;
+}
