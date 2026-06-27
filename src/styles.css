@@ -172,7 +172,8 @@ button {
 .icon-button,
 .task-form button,
 .check-button,
-.delete-button {
+.delete-button,
+.task-dropdown-button {
   width: 32px;
   height: 32px;
   display: grid;
@@ -186,7 +187,8 @@ button {
 .icon-button:hover,
 .task-form button:hover,
 .check-button:hover,
-.delete-button:hover {
+.delete-button:hover,
+.task-dropdown-button:hover {
   background: rgba(255, 255, 255, 0.11);
 }
 
@@ -262,7 +264,7 @@ button {
 
 .task {
   display: grid;
-  grid-template-columns: auto minmax(0, 1fr) auto;
+  grid-template-columns: auto minmax(0, 1fr) auto auto;
   align-items: center;
   gap: 8px;
   min-height: 36px;
@@ -273,24 +275,45 @@ button {
   border-radius: 6px;
 }
 
-.task span {
+.task-title {
   min-width: 0;
   overflow-wrap: anywhere;
   font-size: 13px;
   line-height: 1.35;
 }
 
-.task.done span {
+.task.done .task-title {
   color: #8e9aa5;
   text-decoration: line-through;
 }
 
 .check-button,
-.delete-button {
+.delete-button,
+.task-dropdown-button {
   width: 26px;
   height: 26px;
   color: #aab4be;
   background: transparent;
+}
+
+.task-dropdown-button[aria-expanded="true"] {
+  color: #8bd3dd;
+  background: rgba(139, 211, 221, 0.12);
+}
+
+.task-description {
+  grid-column: 2 / -1;
+  width: 100%;
+  margin: -1px 0 1px;
+  padding: 8px 10px;
+  color: #b8c4cc;
+  font-size: 12px;
+  line-height: 1.45;
+  overflow-wrap: anywhere;
+  white-space: pre-wrap;
+  background: rgba(10, 13, 16, 0.28);
+  border: 1px solid rgba(255, 255, 255, 0.075);
+  border-radius: 6px;
 }
 
 .delete-button:hover {

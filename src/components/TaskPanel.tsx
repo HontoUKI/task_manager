@@ -78,7 +78,7 @@ export function TaskPanel({
                 >
                   {done ? <Check size={16} /> : <Circle size={16} />}
                 </button>
-                <span>{task.title}</span>
+                <span className="task-title">{task.title}</span>
                 <button
                   className="delete-button"
                   type="button"
