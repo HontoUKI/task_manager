@@ -7,6 +7,8 @@ type TaskPanelProps = {
   apiState: ApiState;
   draftTask: string;
   tasks: Task[];
+  draftDescription: string;
+  onDraftDescriptionChange: (value: string) => void;
   onDraftTaskChange: (value: string) => void;
   onAddTask: (event: FormEvent) => void;
   onRemoveTask: (taskId: number) => void;
@@ -17,8 +19,10 @@ export function TaskPanel({
   apiState,
   draftTask,
   tasks,
+  draftDescription,
   onDraftTaskChange,
   onAddTask,
+  onDraftDescriptionChange,
   onRemoveTask,
   onToggleTask,
 }: TaskPanelProps) {
@@ -30,6 +34,13 @@ export function TaskPanel({
           onChange={(event) => onDraftTaskChange(event.target.value)}
           placeholder={apiState === "offline" ? "Backend offline" : "Next task"}
           aria-label="Next task"
+          disabled={apiState === "offline"}
+        />
+        <textarea
+          value={draftDescription}
+          onChange={(event) => onDraftDescriptionChange(event.target.value)}
+          placeholder="Description (optional)"
+          aria-label="Task description"
           disabled={apiState === "offline"}
         />
         <button

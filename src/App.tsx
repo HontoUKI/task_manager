@@ -14,6 +14,7 @@ export function App() {
   const [apiState, setApiState] = useState<ApiState>("connecting");
   const [clickThrough, setClickThrough] = useState(false);
   const [draftTask, setDraftTask] = useState("");
+  const [draftDescription, setDraftDescription] = useState("");
   const [spec, setSpec] = useState("");
   const [tasks, setTasks] = useState<Task[]>([]);
 
@@ -77,13 +78,15 @@ export function App() {
   async function addTask(event: FormEvent) {
     event.preventDefault();
     const title = draftTask.trim();
+    const description = draftDescription.trim();
     if (!title) return;
 
     try {
-      const task = await createTask(title);
+      const task = await createTask(title, description);
       setTasks((current) => [task, ...current]);
       setApiState("online");
       setDraftTask("");
+      setDraftDescription("");
     } catch (error) {
       console.error(error);
       setApiState("offline");
@@ -155,6 +158,8 @@ export function App() {
       <TaskPanel
         apiState={apiState}
         draftTask={draftTask}
+        draftDescription={draftDescription}
+        onDraftDescriptionChange={setDraftDescription}
         tasks={tasks}
         onAddTask={addTask}
         onDraftTaskChange={setDraftTask}

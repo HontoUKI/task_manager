@@ -26,10 +26,10 @@ export function listTasks(): Promise<Task[]> {
   return request<Task[]>("/api/tasks");
 }
 
-export function createTask(title: string): Promise<Task> {
+export function createTask(title: string, description?: string): Promise<Task> {
   return request<Task>("/api/tasks", {
     method: "POST",
-    body: JSON.stringify({ title }),
+    body: JSON.stringify({ title, description }),
   });
 }
 
