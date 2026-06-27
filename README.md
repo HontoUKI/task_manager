@@ -15,13 +15,17 @@ FastAPI task API in `sub-module`.
 - `scripts/tauri-cli.mjs`: wrapper that keeps Vite and Tauri pointed at the same dev port.
 - `Makefile`: common install, run, build, and check commands.
 
+See [`docs/INTERACTION.md`](docs/INTERACTION.md) for the Mermaid interaction
+diagram.
+
 ## Overlay Features
 
 - Transparent, frameless, always-on-top Tauri window.
 - Draggable overlay handle backed by native `start_dragging`.
 - Task list with add, complete, and remove actions.
 - Live spec textarea for acceptance notes and implementation details.
-- Local browser storage under `basic-overlay-state`.
+- Task sync through the FastAPI sub-module.
+- Local browser storage for live spec text.
 - Tray menu with show, hide, click-through toggle, and quit actions.
 - Window close hides to tray; quit from tray exits the process.
 - Click-through mode lowers opacity and lets clicks pass to windows below.

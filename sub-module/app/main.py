@@ -1,6 +1,7 @@
 from contextlib import asynccontextmanager
 
 from fastapi import Depends, FastAPI, HTTPException, Query, Response, status
+from fastapi.middleware.cors import CORSMiddleware
 from sqlalchemy.orm import Session
 
 from app.crud import tasks as task_crud
@@ -23,6 +24,13 @@ app = FastAPI(
     description="Small API for creating, listing, updating, and deleting tasks.",
     version="0.1.0",
     lifespan=lifespan,
+)
+app.add_middleware(
+    CORSMiddleware,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+    allow_origin_regex=r"^(http://127\.0\.0\.1:\d+|http://localhost:\d+|tauri://localhost|https://tauri\.localhost)$",
 )
 app.add_middleware(RateLimitMiddleware, limit=120, window_seconds=60)
 

@@ -8,21 +8,23 @@ The repo has three working areas:
 - `src-tauri/`: Tauri v2 shell, native commands, tray, and global shortcuts.
 - `sub-module/`: FastAPI task management API.
 
-The overlay currently stores UI task/spec state in `localStorage`. The backend
-sub-module is a separate API surface that can become the durable task store.
+The overlay loads and mutates tasks through the FastAPI sub-module. Live spec
+text is still local-only and stored in `localStorage`.
+
+See [`INTERACTION.md`](INTERACTION.md) for the Mermaid interaction diagram.
 
 ## Frontend
 
 `src/main.tsx` contains the current UI because the surface is still small. It
-handles:
+mounts `src/App.tsx`. The app is split into:
 
-- local task state,
-- live spec text,
-- click-through status display,
-- native drag requests,
-- events emitted by Rust when click-through changes.
+- `src/App.tsx`: state orchestration and native/API calls,
+- `src/api/tasks.ts`: HTTP client for the FastAPI task API,
+- `src/components/TitleBar.tsx`: drag, hide, and click-through controls,
+- `src/components/TaskPanel.tsx`: task list and task mutations,
+- `src/components/SpecPanel.tsx`: live spec editor.
 
-The browser state is persisted under `basic-overlay-state`.
+Live spec text is persisted under `basic-overlay-state`.
 
 ## Native Shell
 
@@ -75,7 +77,7 @@ The API defaults to `sqlite:///./tasks.db` and can be pointed elsewhere through
 
 ## Decisions To Revisit
 
-- Whether the overlay should fully replace `localStorage` with the API.
+- Whether live spec persistence should move to the API too.
 - Whether Tauri should own persistence directly for offline use.
 - Whether global shortcuts should be configurable from UI settings.
 - Whether the overlay should stay one window or support separate task/spec views.

@@ -42,6 +42,12 @@ during real work sessions.
 - `make check`: run frontend build, Rust check, and backend tests.
 - `make clean`: remove Python test caches.
 
+## Data Flow
+
+Tasks come from the FastAPI sub-module at `VITE_API_BASE_URL`. Live spec text
+still stays in local browser storage. The full interaction diagram is in
+[`INTERACTION.md`](INTERACTION.md).
+
 ## Control Surface
 
 - Drag the overlay from the grip button in the titlebar.
@@ -54,7 +60,6 @@ that enabled it. Use `Alt+Shift+C` or the tray menu to turn it off.
 
 ## Near-Term Backlog
 
-- Connect the overlay UI to the FastAPI sub-module instead of only `localStorage`.
 - Decide whether task/spec persistence should live in Tauri, the API, or both.
 - Add configurable global shortcuts.
 - Add import/export for task and live spec state.
