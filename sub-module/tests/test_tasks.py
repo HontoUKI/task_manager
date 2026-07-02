@@ -40,7 +40,12 @@ def test_update_task(client: TestClient) -> None:
 
     response = client.patch(
         f"/api/tasks/{task_id}",
-        json={"title": "Reviewed", "description": "Ready", "status": "in_progress"},
+        json={
+            "title": "Reviewed",
+            "description": "Ready",
+            "status": "in_progress",
+            "assigned_to": "carol",
+        },
     )
 
     assert response.status_code == 200
@@ -48,6 +53,7 @@ def test_update_task(client: TestClient) -> None:
     assert data["title"] == "Reviewed"
     assert data["description"] == "Ready"
     assert data["status"] == "in_progress"
+    assert data["assigned_to"] == "carol"
 
 
 def test_delete_task(client: TestClient) -> None:

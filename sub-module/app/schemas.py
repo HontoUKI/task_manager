@@ -25,6 +25,7 @@ class TaskUpdate(BaseModel):
     title: str | None = Field(default=None, min_length=1, max_length=200)
     description: str | None = None
     status: TaskStatus | None = None
+    assigned_to: str | None = Field(default=None, max_length=120)
 
 
 class TaskRead(BaseModel):
